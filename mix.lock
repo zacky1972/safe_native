@@ -1,0 +1,5 @@
+%{
+  "epmd_up": {:hex, :epmd_up, "1.0.0", "7f186b5e1b5d9473a2c928412104edf469d8b270bdb5242025a2e7056a9a3780", [:mix], [], "hexpm", "afc181447799b527afeef88be3d76d4097b8957e1a5bf5713c950ec400437f21"},
+  "get_host": {:hex, :get_host, "1.0.0", "1cd1e216cc024e88fcab599394d88346fcfc60b241c567524662ea9c18059264", [:mix], [], "hexpm", "0a6c515c3acaff38fbbe4b9a59d513a7d084efe4ffca19c2ad3eb767cc482e67"},
+  "node_activator": {:hex, :node_activator, "1.0.0", "7df5ac8c333416531ba4de981a17870b107b7fa48443f1836e5acdd65e0e9c01", [:mix], [{:epmd_up, "~> 1.0", [hex: :epmd_up, repo: "hexpm", optional: false]}, {:get_host, "~> 1.0", [hex: :get_host, repo: "hexpm", optional: false]}], "hexpm", "99308c584918d3b1c32381196f89db76791abd67a4bc10fc574538a52e011fec"},
+}
