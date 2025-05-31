@@ -1,5 +1,9 @@
 %{
+  "bunt": {:hex, :bunt, "1.0.0", "081c2c665f086849e6d57900292b3a161727ab40431219529f13c4ddcf3e7a44", [:mix], [], "hexpm", "dc5f86aa08a5f6fa6b8096f0735c4e76d54ae5c9fa2c143e5a1fc7c1cd9bb6b5"},
+  "credo": {:hex, :credo, "1.7.12", "9e3c20463de4b5f3f23721527fcaf16722ec815e70ff6c60b86412c695d426c1", [:mix], [{:bunt, "~> 0.2.1 or ~> 1.0", [hex: :bunt, repo: "hexpm", optional: false]}, {:file_system, "~> 0.2 or ~> 1.0", [hex: :file_system, repo: "hexpm", optional: false]}, {:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: false]}], "hexpm", "8493d45c656c5427d9c729235b99d498bd133421f3e0a683e5c1b561471291e5"},
   "epmd_up": {:hex, :epmd_up, "1.0.0", "7f186b5e1b5d9473a2c928412104edf469d8b270bdb5242025a2e7056a9a3780", [:mix], [], "hexpm", "afc181447799b527afeef88be3d76d4097b8957e1a5bf5713c950ec400437f21"},
+  "file_system": {:hex, :file_system, "1.1.0", "08d232062284546c6c34426997dd7ef6ec9f8bbd090eb91780283c9016840e8f", [:mix], [], "hexpm", "bfcf81244f416871f2a2e15c1b515287faa5db9c6bcf290222206d120b3d43f6"},
   "get_host": {:hex, :get_host, "1.0.0", "1cd1e216cc024e88fcab599394d88346fcfc60b241c567524662ea9c18059264", [:mix], [], "hexpm", "0a6c515c3acaff38fbbe4b9a59d513a7d084efe4ffca19c2ad3eb767cc482e67"},
+  "jason": {:hex, :jason, "1.4.4", "b9226785a9aa77b6857ca22832cffa5d5011a667207eb2a0ad56adb5db443b8a", [:mix], [{:decimal, "~> 1.0 or ~> 2.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "c5eb0cab91f094599f94d55bc63409236a8ec69a21a67814529e8d5f6cc90b3b"},
   "node_activator": {:hex, :node_activator, "1.0.0", "7df5ac8c333416531ba4de981a17870b107b7fa48443f1836e5acdd65e0e9c01", [:mix], [{:epmd_up, "~> 1.0", [hex: :epmd_up, repo: "hexpm", optional: false]}, {:get_host, "~> 1.0", [hex: :get_host, repo: "hexpm", optional: false]}], "hexpm", "99308c584918d3b1c32381196f89db76791abd67a4bc10fc574538a52e011fec"},
 }
