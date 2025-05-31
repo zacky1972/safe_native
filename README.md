@@ -1,6 +1,6 @@
 # SafeNative
 
-A supervising module that enables Elixir processes to be continued execution even if external native code aborting, with direct data structure exchange between Elixir and native code.
+A supervision module for process continuity, with direct data structure exchange with external native code.
 
 ## Installation
 
