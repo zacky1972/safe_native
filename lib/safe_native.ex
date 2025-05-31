@@ -1,5 +1,6 @@
 defmodule SafeNative do
   @moduledoc """
-  Documentation for `SafeNative`.
+  A supervision module for process continuity, 
+  with direct data structure exchange with external native code.
   """
 end
