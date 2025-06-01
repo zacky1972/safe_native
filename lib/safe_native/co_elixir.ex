@@ -5,6 +5,7 @@ defmodule SafeNative.CoElixir do
   require Logger
 
   def start_link(options \\ []) do
+    NodeActivator.run(Keyword.get(options, :host_name, ""))
     GenServer.start_link(__MODULE__, options)
   end
 
