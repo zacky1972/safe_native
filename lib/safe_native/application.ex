@@ -10,6 +10,7 @@ defmodule SafeNative.Application do
     children = [
       # Starts a worker by calling: SafeNative.Worker.start_link(arg)
       # {SafeNative.Worker, arg}
+      {DynamicSupervisor, strategy: :one_for_one, name: SafeNative.DynamicSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
