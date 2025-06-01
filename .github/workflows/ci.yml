@@ -7,9 +7,9 @@ name: Elixir CI
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "develop", "develop2" ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "develop", "develop2" ]
     paths-ignore:
       - '**/*.md'
       - 'LICENSE'
