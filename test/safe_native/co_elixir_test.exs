@@ -6,14 +6,14 @@ defmodule SafeNative.CoElixirTest do
 
   setup do
     # Start a new CoElixir process for each test
-    {:ok, pid} = CoElixir.start_link()
+    {:ok, pid} = CoElixir.start_link(node_name_prefix: "test")
     %{pid: pid}
   end
 
   describe "initialization" do
     test "starts with default options", %{pid: pid} do
       state = :sys.get_state(pid)
-      assert state.options == []
+      assert state.options == [node_name_prefix: "test"]
       assert state.running
       assert state.worker_node == nil
     end
@@ -30,7 +30,9 @@ defmodule SafeNative.CoElixirTest do
 
   describe "get_worker_pid" do
     test "Any exception is not raised, when get_worker_pid called, initially.", %{pid: pid} do
-      case GenServer.call(pid, {:get_worker_pid, :test}) do
+      test_node = NodeActivator.Util.generate_node_name("test")
+
+      case GenServer.call(pid, {:get_worker_pid, test_node}) do
         {:ok, _} -> :ok
         {:error, _} -> :error
       end
@@ -39,16 +41,17 @@ defmodule SafeNative.CoElixirTest do
 
   describe "get_worker_pid after register_worker_node and deregister_worker_node" do
     test "pid matches", %{pid: pid} do
-      :ok = GenServer.call(pid, {:register_worker_node, :test, self()})
+      test_node = NodeActivator.Util.generate_node_name("test")
+      :ok = GenServer.call(pid, {:register_worker_node, test_node, self()})
 
-      case GenServer.call(pid, {:get_worker_pid, :test}) do
+      case GenServer.call(pid, {:get_worker_pid, test_node}) do
         {:ok, s} -> assert s == self()
         v -> flunk("get_worker_pid returns #{inspect(v)}")
       end
 
-      :ok = GenServer.call(pid, {:deregister_worker_node, :test})
+      :ok = GenServer.call(pid, {:deregister_worker_node, test_node})
 
-      case GenServer.call(pid, {:get_worker_pid, :test}) do
+      case GenServer.call(pid, {:get_worker_pid, test_node}) do
         {:error, :not_found} -> :ok
         v -> flunk("get_worker_pid returns #{inspect(v)}")
       end

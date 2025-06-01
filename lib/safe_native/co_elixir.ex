@@ -20,14 +20,21 @@ defmodule SafeNative.CoElixir do
     if a_process.running do
       {:noreply, a_process}
     else
-      worker_node =
+      {:ok, worker_node} =
         a_process.options
         |> Keyword.get(:node_name_prefix, "")
         |> NodeActivator.Util.generate_node_name()
 
       Logger.info("spawning #{inspect(worker_node)}")
+      do_spawn_co_elixir(self(), Node.self(), worker_node, a_process.options)
       {:noreply, %{a_process | running: true}}
     end
+  end
+
+  defp do_spawn_co_elixir(this_pid, _this_node, worker_node, _options) do
+    spawn_link(fn ->
+      :ok = GenServer.call(this_pid, {:register_worker_node, worker_node, this_pid})
+    end)
   end
 
   @impl true
@@ -40,7 +47,7 @@ defmodule SafeNative.CoElixir do
 
           _ ->
             raise RuntimeError,
-                  "Invalid status on #{inspect(worker_node)}, due to unmatched status."
+                  "Invalid status on #{inspect(worker_node)}, due to unmatched status #{inspect(SafeNative.Lookup.get(worker_node))}."
         end
 
       ^worker_node ->
@@ -54,7 +61,8 @@ defmodule SafeNative.CoElixir do
         end
 
       _ ->
-        raise RuntimeError, "Invalid status on #{inspect(worker_node)}, due to unmatched status."
+        raise RuntimeError,
+              "Invalid status on #{inspect(worker_node)}, due to unmatched status #{inspect(a_process.worker_node)}."
     end
   end
 
