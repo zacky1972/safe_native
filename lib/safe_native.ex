@@ -6,7 +6,7 @@ defmodule SafeNative do
 
   def run(options \\ []) do
     options
-    |> then(fn options -> 
+    |> then(fn options ->
       [
         code: options[:code] || "",
         deps: options[:deps] || [],
