@@ -14,7 +14,7 @@ defmodule SafeNative.CoElixirTest do
     test "starts with default options", %{pid: pid} do
       state = :sys.get_state(pid)
       assert state.options == []
-      assert state.running == false
+      assert state.running
       assert state.worker_node == nil
     end
 
@@ -23,7 +23,7 @@ defmodule SafeNative.CoElixirTest do
       {:ok, pid} = CoElixir.start_link(options)
       state = :sys.get_state(pid)
       assert state.options == options
-      assert state.running == false
+      assert state.running
       assert state.worker_node == nil
     end
   end

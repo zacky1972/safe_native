@@ -17,7 +17,17 @@ defmodule SafeNative.CoElixir do
 
   @impl true
   def handle_continue(:co_elixir, a_process) do
-    {:noreply, a_process}
+    if a_process.running do
+      {:noreply, a_process}
+    else
+      worker_node =
+        a_process.options
+        |> Keyword.get(:node_name_prefix, "")
+        |> NodeActivator.Util.generate_node_name()
+
+      Logger.info("spawning #{inspect(worker_node)}")
+      {:noreply, %{a_process | running: true}}
+    end
   end
 
   @impl true
